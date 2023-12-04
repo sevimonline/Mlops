@@ -43,15 +43,26 @@ jobs:
           docker build -t us-central1-docker.pkg.dev/${PROJECT_ID}/mlops/fastapi:latest .
           docker push us-central1-docker.pkg.dev/${PROJECT_ID}/mlops/fastapi:latest
 
-      - name: Deploy To Cloud Run
-        uses: google-github-actions/auth@v1
-        with:
-          service: fastapi
-          image: us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/mlops/fastapi:latest
-          region: us-central1
-          allow-unauthenticated: true
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          credentials_json: ${{ secrets.GOOGLECLOUD_JSON }} 
-          # MLOps - CI/CD pipeline Github Actions
+      - name: Deploy To Cloud run
+        run: |
+          gcloud run deploy fastapi2 \
+          --image=us-central1-docker.pkg.dev/swift-terra-405619/mlops/fastapi:latest \
+          --allow-unauthenticated \
+          --port=8080 \
+          --service-account=1089739269780-compute@developer.gserviceaccount.com \
+          --cpu-boost \
+          --region=us-central1 \
+          --project=swift-terra-405619
+
+      # - name: Deploy To Cloud Run
+      #   uses: google-github-actions/auth@v1
+      #   with:
+      #     service: fastapi
+      #     image: us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/mlops/fastapi:latest
+      #     region: us-central1
+      #     allow-unauthenticated: true
+      #     service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
+      #     PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      #     credentials_json: ${{ secrets.GOOGLECLOUD_JSON }} 
+      #     # MLOps - CI/CD pipeline Github Actions
  
