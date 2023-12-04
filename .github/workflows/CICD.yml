@@ -54,4 +54,4 @@ jobs:
           PROJECT_ID: ${{ secrets.PROJECT_ID }}
           credentials_json: ${{ secrets.GOOGLECLOUD_JSON }} 
           # MLOps - CI/CD pipeline Github Actions
-
+ 
