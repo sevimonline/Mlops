@@ -1,7 +1,7 @@
 FROM python:3.11-slim-bullseye
 RUN mkdir /app
 WORKDIR /app
-COPY requirements.txt .
+COPY . .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
