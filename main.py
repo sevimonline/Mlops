@@ -84,7 +84,7 @@ def home():
 <body>
     <div>
         <h1>Heart Disease Predictor</h1>
-        <form action="/predict/logreg_model/" method="post">
+        <form action="/pridict/logreg_model/" method="post">
             <!-- Buraya HTML formunu ekleyin -->
             <!-- ... -->
             <button type="submit">Predict</button>
