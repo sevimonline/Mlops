@@ -83,41 +83,41 @@ def home():
         <div>
             <h1>Heart Disease Predictor</h1>
             <form action="/pridict/logreg_model/" method="post">
-                <label for="Age">Age:</label>
-                <input type="number" name="Age" required>
-                
-                <label for="Sex">Sex:</label>
-                <input type="number" name="Sex" required>
-                
-                <label for="ChestPainType">Chest Pain Type:</label>
-                <input type="number" name="ChestPainType" required>
-                
-                <label for="RestingBP">Resting Blood Pressure:</label>
-                <input type="number" name="RestingBP" required>
-                
-                <label for="Cholesterol">Cholesterol:</label>
-                <input type="number" name="Cholesterol" required>
-                
-                <label for="FastingBS">Fasting Blood Sugar:</label>
-                <input type="number" name="FastingBS" required>
-                
-                <label for="RestingECG">Resting Electrocardiographic Results:</label>
-                <input type="number" name="RestingECG" required>
-                
-                <label for="MaxHR">Maximum Heart Rate Achieved:</label>
-                <input type="number" name="MaxHR" required>
-                
-                <label for="ExerciseAngina">Exercise Induced Angina:</label>
-                <input type="number" name="ExerciseAngina" required>
-                
-                <label for="Oldpeak">Oldpeak:</label>
-                <input type="number" step="any" name="Oldpeak" required>
-                
-                <label for="ST_Slope">ST Slope:</label>
-                <input type="number" name="ST_Slope" required>
-                
-                <button type="submit">Predict</button>
-            </form>
+                    <label for="Age">Age: (Min:28 , Max:77)</label>
+                    <input type="number" name="Age" required>
+                    
+                    <label for="Sex">Sex: (0:Male , 1:Female) </label>
+                    <input type="number" name="Sex" required>
+                    
+                    <label for="ChestPainType (0:ATA, 1:NAP, 2:ASY, 3:TA)">Chest Pain Type:</label>
+                    <input type="number" name="ChestPainType" required>
+                    
+                    <label for="RestingBP (Min:0 , Max:200)">Resting Blood Pressure:</label>
+                    <input type="number" name="RestingBP" required>
+                    
+                    <label for="Cholesterol">Cholesterol: (Min:0 , Max:300)</label>
+                    <input type="number" name="Cholesterol" required>
+                    
+                    <label for="FastingBS (Min:0 , Max:1)">Fasting Blood Sugar:</label>
+                    <input type="number" name="FastingBS" required>
+                    
+                    <label for="RestingECG">Resting Electrocardiographic Results: (0:Normal, 1:ST, 2:LVH)</label>
+                    <input type="number" name="RestingECG" required>
+                    
+                    <label for="MaxHR (Min:60 , Max: 202)">Maximum Heart Rate Achieved:</label>
+                    <input type="number" name="MaxHR" required>
+                    
+                    <label for="ExerciseAngina">Exercise Induced Angina: (0:N, 1:Y)</label>
+                    <input type="number" name="ExerciseAngina" required>
+                    
+                    <label for="Oldpeak">Oldpeak: (Enter Float Type) Min: -2.60 , Max : 6.20 </label>
+                    <input type="number" step="any" name="Oldpeak" required>
+                    
+                    <label for="ST_Slope">ST Slope: (0:Up, 1:Flat, 2:Down)</label>
+                    <input type="number" name="ST_Slope" required>
+                    
+                    <button type="submit">Predict</button>
+                </form>
             <p id="result"></p>
         </div>
     </body>
@@ -179,38 +179,51 @@ def knn_predict(
         # Make predictions
         predict = load_model.predict(df)
 
+        
         result_html = f"""
         <html>
             <head>
                 <title>Model Prediction Result</title>
                 <style>
                     body {{
-                        font-family: Arial, sans-serif;
+                        font-family: 'Arial', sans-serif;
                         margin: 0;
                         padding: 0;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         height: 100vh;
-                        background-color: #f2f2f2; /* Arka plan rengi */
-                        color: #333; /* Yazı rengi */
+                        background-image: url('/static/heart.jpeg');
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        color: #fff;
+                    }}
+
+                    .container {{
+                        text-align: center;
+                        background-color: rgba(255, 255, 255, 0.8);
+                        padding: 20px;
+                        border-radius: 10px;
                     }}
 
                     h1 {{
                         text-align: center;
+                        color: #4caf50;
                     }}
 
                     p {{
                         margin-top: 20px;
-                        text-align: center;
                         font-size: 24px;
-                        color: #4caf50; /* Sonuç metni rengi */
+                        color: #333;
                     }}
                 </style>
             </head>
             <body>
-                <h1>Heart Disease Predictor</h1>
-                <p>Prediction Result: {int(predict)}</p>
+                <div class="container">
+                    <h1>Heart Disease Predictor</h1>
+                    <p>Prediction Result: {int(predict)}</p>
+                </div>
             </body>
         </html>
         """
