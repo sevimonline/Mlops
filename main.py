@@ -83,37 +83,37 @@ def home():
         <div>
             <h1>Heart Disease Predictor</h1>
             <form action="/pridict/logreg_model/" method="post">
-                <label for="Age">Age:</label>
+                <label for="Age">Age: (Min:28 , Max:77)</label>
                 <input type="number" name="Age" required>
                 
-                <label for="Sex">Sex:</label>
+                <label for="Sex">Sex: (0:Male , 1:Female) </label>
                 <input type="number" name="Sex" required>
                 
-                <label for="ChestPainType">Chest Pain Type:</label>
+                <label for="ChestPainType (0:ATA, 1:NAP, 2:ASY, 3:TA)">Chest Pain Type:</label>
                 <input type="number" name="ChestPainType" required>
                 
-                <label for="RestingBP">Resting Blood Pressure:</label>
+                <label for="RestingBP (Min:0 , Max:200)">Resting Blood Pressure:</label>
                 <input type="number" name="RestingBP" required>
                 
-                <label for="Cholesterol">Cholesterol:</label>
+                <label for="Cholesterol">Cholesterol: (Min:0 , Max:300)</label>
                 <input type="number" name="Cholesterol" required>
                 
-                <label for="FastingBS">Fasting Blood Sugar:</label>
+                <label for="FastingBS (Min:0 , Max:1)">Fasting Blood Sugar:</label>
                 <input type="number" name="FastingBS" required>
                 
-                <label for="RestingECG">Resting Electrocardiographic Results:</label>
+                <label for="RestingECG">Resting Electrocardiographic Results: (0:Normal, 1:ST, 2:LVH)</label>
                 <input type="number" name="RestingECG" required>
                 
-                <label for="MaxHR">Maximum Heart Rate Achieved:</label>
+                <label for="MaxHR (Min:60 , Max: 202)">Maximum Heart Rate Achieved:</label>
                 <input type="number" name="MaxHR" required>
                 
-                <label for="ExerciseAngina">Exercise Induced Angina:</label>
+                <label for="ExerciseAngina">Exercise Induced Angina: (0:N, 1:Y)</label>
                 <input type="number" name="ExerciseAngina" required>
                 
-                <label for="Oldpeak">Oldpeak:</label>
+                <label for="Oldpeak">Oldpeak: (Enter Float Type) Min: -2.60 , Max : 6.20 </label>
                 <input type="number" step="any" name="Oldpeak" required>
                 
-                <label for="ST_Slope">ST Slope:</label>
+                <label for="ST_Slope">ST Slope: (0:Up, 1:Flat, 2:Down)</label>
                 <input type="number" name="ST_Slope" required>
                 
                 <button type="submit">Predict</button>
@@ -179,7 +179,7 @@ def knn_predict(
         # Make predictions
         predict = load_model.predict(df)
 
-        result_html = """
+        result_html = f"""
         <html>
             <head>
                 <title>Model Prediction Result</title>
