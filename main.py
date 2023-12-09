@@ -155,7 +155,7 @@ def knn_predict(
         load_model = pickle.load(open('logreg_model.pkl', 'rb'))
         
         # Form verilerini ModelSchema'ya dönüştürme
-        predict_values = ModelSchema(
+        predict_values = logreg_schema(
             Age=Age,
             Sex=Sex,
             ChestPainType=ChestPainType,
@@ -163,7 +163,7 @@ def knn_predict(
             Cholesterol=Cholesterol,
             FastingBS=FastingBS,
             RestingECG=RestingECG,
-            MaxHR=MaxHR,
+            MaxHR=MaxHR,    
             ExerciseAngina=ExerciseAngina,
             Oldpeak=Oldpeak,
             ST_Slope=ST_Slope
