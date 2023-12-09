@@ -179,41 +179,54 @@ def knn_predict(
         # Make predictions
         predict = load_model.predict(df)
 
-        result_html = f"""
+        result_html = """
         <html>
             <head>
                 <title>Model Prediction Result</title>
                 <style>
-                    body {{
-                        font-family: Arial, sans-serif;
+                    body {
+                        font-family: 'Arial', sans-serif;
                         margin: 0;
                         padding: 0;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         height: 100vh;
-                        background-color: #f2f2f2; /* Arka plan rengi */
-                        color: #333; /* Yazı rengi */
-                    }}
+                        background-image: url('/static/heart.jpeg');
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        color: #fff;
+                    }
 
-                    h1 {{
+                    .container {
                         text-align: center;
-                    }}
+                        background-color: rgba(255, 255, 255, 0.8);
+                        padding: 20px;
+                        border-radius: 10px;
+                    }
 
-                    p {{
+                    h1 {
+                        text-align: center;
+                        color: #4caf50;
+                    }
+
+                    p {
                         margin-top: 20px;
-                        text-align: center;
                         font-size: 24px;
-                        color: #4caf50; /* Sonuç metni rengi */
-                    }}
+                        color: #333;
+                    }
                 </style>
             </head>
             <body>
-                <h1>Heart Disease Predictor</h1>
-                <p>Prediction Result: {int(predict)}</p>
+                <div class="container">
+                    <h1>Heart Disease Predictor</h1>
+                    <p>Prediction Result: {int(predict)}</p>
+                </div>
             </body>
         </html>
         """
+
         
         return HTMLResponse(content=result_html, status_code=200)
 
