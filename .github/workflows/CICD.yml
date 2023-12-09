@@ -45,13 +45,11 @@ jobs:
 
       - name: Deploy To Cloud run
         run: |
-          gcloud run deploy fastapi2 \
-          --image=us-central1-docker.pkg.dev/swift-terra-405619/mlops/fastapi:latest \
+          gcloud run deploy fastapiend \
+          --image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/mlops/fastapi:latest \
           --allow-unauthenticated \
           --port=8080 \
-          --service-account=1089739269780-compute@developer.gserviceaccount.com \
+          --service-account=${{ secrets.SERVICE_ACCOUNT }} \
           --cpu-boost \
           --region=us-central1 \
-          --project=swift-terra-405619
-
- 
+          --project=${{ secrets.PROJECT_ID }}
