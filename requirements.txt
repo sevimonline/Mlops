@@ -5,3 +5,4 @@ pandas
 pydantic==2.5.1
 pytest
 httpx
+multipart
