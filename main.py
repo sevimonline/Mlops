@@ -16,7 +16,6 @@ def home():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Logistic Regression Predictor</title>
-        <link rel="stylesheet" href="/static/style.css">
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -119,29 +118,6 @@ def home():
             </form>
             <p id="result"></p>
         </div>
-
-        <script>
-            document.querySelector('form').addEventListener('submit', async function (e) {
-                e.preventDefault();
-                
-                const formData = new FormData(e.target);
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
-
-                const response = await fetch('/pridict/logreg_model/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                const result = await response.json();
-                document.getElementById('result').innerText = `Prediction: ${result.Predict}`;
-            });
-        </script>
     </body>
     </html>
 
@@ -217,6 +193,6 @@ def knn_predict(
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-        
+
 
  
