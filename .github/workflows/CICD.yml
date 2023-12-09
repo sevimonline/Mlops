@@ -1,0 +1,58 @@
+name: MLOps - CI/CD pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+    steps:
+      - name: Check out Repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run test
+        run: |
+          pytest
+
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GOOGLECLOUD_JSON }}'
+          PROJECT_ID: '${{ secrets.PROJECT_ID }}'
+          service_account_key: '${{ secrets.SERVICE_ACCOUNT }}'
+          export_default_credentials: true
+      
+      - name: Build the container image and push Artifact Registry
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+          docker build -t us-central1-docker.pkg.dev/${PROJECT_ID}/mlops/fastapi:latest .
+          docker push us-central1-docker.pkg.dev/${PROJECT_ID}/mlops/fastapi:latest
+
+      - name: Deploy To Cloud run
+        run: |
+          gcloud run deploy fastapi2 \
+          --image=us-central1-docker.pkg.dev/swift-terra-405619/mlops/fastapi:latest \
+          --allow-unauthenticated \
+          --port=8080 \
+          --service-account=1089739269780-compute@developer.gserviceaccount.com \
+          --cpu-boost \
+          --region=us-central1 \
+          --project=swift-terra-405619
+
+
+ 
