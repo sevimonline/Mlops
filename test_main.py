@@ -23,6 +23,6 @@ def test_logreg_predict():
         "ST_Slope": 1,
     }
 
-    response = client.post("/pridict/model", data=payload)
+    response = client.post("/pridict/logreg_model", data=payload)
     assert response.status_code == 200
     assert "Model Prediction Result" in response.text
