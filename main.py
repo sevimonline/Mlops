@@ -183,9 +183,33 @@ def knn_predict(
         <html>
             <head>
                 <title>Model Prediction Result</title>
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        background-color: #f2f2f2; /* Arka plan rengi */
+                        color: #333; /* Yazı rengi */
+                    }}
+
+                    h1 {{
+                        text-align: center;
+                    }}
+
+                    p {{
+                        margin-top: 20px;
+                        text-align: center;
+                        font-size: 24px;
+                        color: #4caf50; /* Sonuç metni rengi */
+                    }}
+                </style>
             </head>
             <body>
-                <h1>Model Prediction Result</h1>
+                <h1>Heart Disease Predictor</h1>
                 <p>Prediction Result: {int(predict)}</p>
             </body>
         </html>
