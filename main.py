@@ -25,7 +25,7 @@ def home():
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
-                background-image: url('13up-healthlife-superJumbo-v2.gif'); /* Değiştirmeniz gereken yer */
+                background-image: url('13up-healthlife-superJumbo-v2.gif'); /* Arka plan resmi */
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -136,7 +136,7 @@ class logreg_schema(BaseModel):
     Oldpeak: float
     ST_Slope: int
 
-@app.post("/pridict/model")
+@app.post("/pridict/logreg_model")
 def knn_predict(
     Age: int = Form(...),
     Sex: int = Form(...),
