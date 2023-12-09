@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import pandas as pd
 import pickle
 
-app = FastAPI()
 
+app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 def home():
@@ -16,7 +18,6 @@ def home():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Logistic Regression Predictor</title>
-        <link rel="stylesheet" href="/static/style.css">
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -26,7 +27,7 @@ def home():
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
-                background-image: url('13up-healthlife-superJumbo-v2.gif'); /* Değiştirmeniz gereken yer */
+                background-image: url('/static/13up-healthlife-superJumbo-v2.gif'); /* Resmin yolunu düzeltin */
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -196,4 +197,4 @@ def knn_predict(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-   
+ 
