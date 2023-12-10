@@ -222,7 +222,7 @@ def knn_predict(
             <body>
                 <div class="container">
                     <h1>Heart Disease Predictor</h1>
-                    <p>Prediction Result [1: Heart Disease, 0: Normal]: {int(predict)}</p>
+                    <p>Prediction Result [1: Heart Disease, 0: Normal] = {int(predict)}</p>
                 </div>
             </body>
         </html>
